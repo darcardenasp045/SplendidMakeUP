@@ -469,20 +469,25 @@ h3 {
   font-family: "Montserrat", sans-serif;
 }
 #brandsName {
-  display: grid;
-  grid-template-rows: repeat(2, 68px);
-  grid-template-columns: repeat(5, 1fr);
-  
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   margin: auto;
-  grid-gap: 30px;
-  overflow-y: none;
+  grid-gap: 100px;
+ 
 }
 #brandsName > div {
-  border: 1px solid lightgrey;
+  
   display: flex;
+  height: fit-content;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+#brandsName > div > img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
 }
 #banner1 {
   width: 80%;
