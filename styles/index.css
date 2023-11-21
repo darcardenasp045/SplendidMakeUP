@@ -1,4 +1,5 @@
-body{
+#container{
+  position: relative;
   width: 1000px;
   margin: 10px auto;
 }
@@ -16,10 +17,10 @@ body{
 }
 
 #loginn {
-  margin-left: 54%;
+  right: 0;
   background-color: white;
   position: absolute;
-  width: 25%;
+  width: auto;
   padding: 15px 20px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.19);
   display: none;
@@ -29,8 +30,9 @@ body{
   font-weight: 800;
   font-size: 15px;
 }
+
 #newAccount{
-  margin-left: 54%;
+  right: 0;
   background-color: white;
   position: absolute;
   width: 25%;
@@ -396,6 +398,7 @@ i {
   display: none;
 }
 img {
+  object-fit: contain;
   vertical-align: middle;
 }
 
@@ -448,11 +451,6 @@ img {
 }
 
 /* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .text {
-    font-size: 11px;
-  }
-}
 
 #banner {
   width: 80%;
@@ -670,10 +668,7 @@ h5 {
   text-decoration: underline;
   cursor: pointer;
 }
-#email {
-  padding: 10px 50px;
-  border-radius: 3px;
-}
+
 button {
   background-color: #ff66b9;
   color: white;

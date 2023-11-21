@@ -74,22 +74,22 @@
      
     
       <div id="formdiv">
-          <form id="form">
+          <form id="form" action="./php/index.php" method="post">
               <label class="leb1">Nombre</label><span>*</span>
               <br>
-              <input type="text" id="first">
+              <input type="text" id="nombre" name="nombre">
               <br><br>
               <label  class="leb1 ">Apellido</label><span>*</span>
               <br>
-              <input id="leb2" type="text">
+              <input id="apellido" type="text" name="apellido">
               <br><br>
               <label class="leb1">Email</label><span>*</span>
               <br>
-              <input type="text" id="eml">
+              <input type="text" id="email" name="email">
               <br><br>
               <label class="leb1">Clave</label><span>*</span>
               <br>
-              <input type="password" id="pass">
+              <input type="password" id="pass" name="pass">
               <br><br>
               <button id="sub" type="submit">CREA LA CUENTA</button>
           </form>
@@ -398,6 +398,7 @@
       </div>
 
       <!--      Footer End                    -->
+    </div>
     </div>
 </body>
 

@@ -1,6 +1,3 @@
-// SlideShow JS
-
-
 // Login PopUp JS
 
 var loginn = document.getElementById("loginn");
@@ -45,24 +42,32 @@ function hideSection(section) {
 
 // Login Data JS
 
-document.querySelector("#form").addEventListener("submit", mylogin);
-var regUser = JSON.parse(localStorage.getItem("Useraccount"));
-console.log(regUser);
-function mylogin(event) {
-  event.preventDefault();
-  email = document.querySelector("#eml").value;
-  password = document.querySelector("#pass").value;
+const botonCrearCuenta = document.getElementById('sub');
 
-  for (var i = 0; i < regUser.length; i++) {
-    if (regUser[i].email == email && regUser[i].password == password) {
-      window.location.href = "./logout.html";
-      alert("Login Successful");
-      break;
-    } else {
-      alert("Invalid Email Or Password");
-      break;
-    }
-  }
-}
+botonCrearCuenta.addEventListener("click", ()=>{
+  const nombreUsuario = document.querySelector("nombre").value;
+  const apellidoUsuario = document.querySelector("apellido").value;
+  const emailUsuario = document.querySelector("email").value;
+  const passwordUsuario = document.querySelector("pass").value;
+  if (nombreUsuario === "" ||apellidoUsuario === "" || emailUsuario === "" || passwordUsuario === "") {
+    alert('Todos los campos son obligatorios');
+  } else {
+    // Creamos el usuario con su información
+    let userData = {
+        name: nombreUsuario,
+        apellido:apellidoUsuario,
+        email: emailUsuario,
+        password: passwordUsuario
+
+        };
+        console.log(userData);
+        // Guardamos el usuario en localStorage
+        localStorage.setItem('user', JSON.stringify(userData));
+        
+        // Redireccionamos a la página principal
+        window.location.href="index.html"
+        }
+        
+})
 
 
