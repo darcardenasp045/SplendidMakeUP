@@ -39,4 +39,8 @@ El usuario puede crear una cuenta y también iniciar sesión en la cuenta. Usamo
 ## Pagina de Pagos :
 Proximamente......
 
+## PREVISUALIZAR LA PAGINA .⬇️⬇️⬇️⬇️⬇️
+
+https://splendid-makeup.vercel.app/
+
 
