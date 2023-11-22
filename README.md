@@ -1,11 +1,12 @@
 # SPLENDID MAKEUP :
 
-This project is a clone of hokmakeup.com, HOK makeup is a website for buying makeup toolkits and accessories from the brands across the whole world. HOK makeup brings the most loved beauty brands worldwide to your doorstep. It is a 100% genuine products sourced directly from the brands.
+Este proyecto es el proyecto es un desarrollo de un E-Commerce de maquillaje en linea, se ha ido desarrollando en conjunto con el aprendizaje que nos han impartido en las clases del SENA.
+Buscamos desarrollar concimientos adquiridos en las clases y mejorar el proyecto.
 
 
-## Tech Stack :
+## Lenguajes utilizados :
 
-The tech Stack we used for creating this website are :-
+Los lenguajes que usamos para desarrollar el proyecto son :-
 
 <img src="https://cdn-icons-png.flaticon.com/512/226/226269.png" width=20/> HTML
 
@@ -15,27 +16,27 @@ The tech Stack we used for creating this website are :-
 
 
 ## Landing Page :
-The landing page of hokmakeup.com displays the navigation bar which contains menu bar, search option, Login and Create Account.
-In our website, we tried our best to clone same as original website.
+La página de inicio de SPLENDID MAKEUP muestra la barra de navegación que contiene la barra de menú, la opción de búsqueda, Iniciar sesión y Crear cuenta.
 
 
-## Menu Section :
-We have added Menu section on the top navbar, if you hover on the menu it will show the categories and subcategories of that section.
+## Seccion del Menu :
+Hemos agregado la sección Menú en la barra de navegación superior; si pasa el cursor sobre el menú, se mostrarán las categorías y subcategorías de esa sección.
 
 
-## Product Page :
-We have so much categories user can find their products according to their need. We have added products from original website and categorized them into different section.
+## Pagina del Producto:
+Tenemos tantas categorías que el usuario puede encontrar sus productos según sus necesidades. 
 
 
-## Cart Section :
-When we add some products using Add to Cart button, the products you have chosen, will showcase into the Cart Section.
+## Carrito de Compra :
+Proximamente.....
 
 
-## Login and Create Account : 
-User can Create Account and also Login to the account. We used some JavaScript for Sign-up and Login Functionalities.
+## Login y Creacion de Cuenta : 
+
+El usuario puede crear una cuenta y también iniciar sesión en la cuenta. Usamos algo de JavaScript para las transiciones de registro e inicio de sesión.
 
 
-## Payment Page :
-We have added different payment methods, users can choose according to there preference, and after selecting any method it will redirect users to final payment page.
+## Pagina de Pagos :
+Proximamente......
 
 
