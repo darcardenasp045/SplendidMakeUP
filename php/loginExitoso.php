@@ -11,99 +11,68 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;500&family=Poppins:wght@100&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-  <link rel="stylesheet" href="./styles/index.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;500&family=Poppins:wght@100&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../styles/index.css" />
 </head>
 
 <body>
+<?php
+    // Configuración de la conexión a la base de datos
+    $servername = "localhost";
+    $username = "root";
+    $password = "123456";
+    $dbname = "Splendid";
 
-  
+    // Crear conexión
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-    <div id="container">
+    // Verificar la conexión
+    if ($conn->connect_error) {
+        die("Conexión fallida: " . $conn->connect_error);
+    }
+
+    // Inicializar la variable del nombre del usuario
+    $nombreUsuario = "";
+
+    // Procesar los datos del formulario de inicio de sesión
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $email = $_POST["email"];
+        $password = $_POST["pass"];
+
+        // Consulta SQL para verificar las credenciales
+        $sql = "SELECT nombre FROM usuarios WHERE email='$email' AND password='$password'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // Las credenciales son correctas, obtener el nombre del usuario
+            $row = $result->fetch_assoc();
+            $nombreUsuario = $row['nombre'];
+        } else {
+            // Las credenciales son incorrectas, redirigir a página de error
+            header("Location: ./loginFallido.php");
+            exit();
+        }
+    }
+
+    // Cerrar la conexión
+    $conn->close();
+    ?>
+
+  <div id="container">
 
     <!--       Header Data Start                  -->
 
     <div id="nav1">
       <h4 id="free600">ENVIO GRATIS DESPUES DE 100.000 PESOS</h4>
       <h4 id="track">Rastrear Envio</h4>
-      <i class="far fa-user"></i>
-      <h4 id="log">Ingresa</h4>
-      <h4>o</h4>
 
-      <h4 id="create"> Crea una Cuenta</a></h4>
     </div>
-
-
-    <!-- Login Data By Dhananjay -->
-
-    <div id="loginn">
-      <div id="top">
-        <div id="under">Registro de Usuario</div>
-        <div><i id="close" class="fas fa-times"></i></div>
-      </div>
-      <hr id="loginHr" />
-      <p style="color: black;">Si tu estas registrado por favor, <br> registrate.</p>
-      <div>
-        <form id="form" method="post" action="./php/loginExitoso.php">
-          <label id="logBold">Email</label><span>*</span>
-          <br />
-          <input id="eml" class="box" type="text"name="email" placeholder="Email" />
-          <br /><br />
-          <label id="logBold">Clave</label><span>*</span>
-          <br />
-          <input id="pass" class="box" type="password" name="pass" placeholder="Password" />
-          <br /><br />
-          <div class="pasdiv">Olvidaste tu contraseña?</a></div>
-          <button class="box but1" type="submit" >
-            LOGIN
-          </button>
-        </form>
-       
-      </div>
-    </div>
-
-    <div id="newAccount">
-      <div id="top">
-        <div id="under">
-          Crea una Cuenta
-      </div>
-      <div><i id="close1" class="fas fa-times"></i></div>
-
-      </div>
-     
-    
-      <div id="formdiv">
-          <form id="form" action="./php/crearCuenta.php" method="post">
-              <label class="leb1">Nombre</label><span>*</span>
-              <br>
-              <input type="text" id="nombre" name="nombre">
-              <br><br>
-              <label  class="leb1 ">Apellido</label><span>*</span>
-              <br>
-              <input id="apellido" type="text" name="apellido">
-              <br><br>
-              <label class="leb1">Email</label><span>*</span>
-              <br>
-              <input type="text" id="email" name="email">
-              <br><br>
-              <label class="leb1">Clave</label><span>*</span>
-              <br>
-              <input type="password" id="pass" name="pass">
-              <br><br>
-              <button id="sub" type="submit">CREA LA CUENTA</button>
-          </form>
-      </div>
-      
-
-  </div>
 
     <nav id="nav2">
       <div id="logo">
         <a href="./index.html">
-          <img id="logo" src="./imagenes/logo-removebg-preview.png" alt="logo"/>
+          <img id="logo" src="../imagenes/logo-removebg-preview.png" alt="logo" />
         </a>
       </div>
       <div id="search">
@@ -127,7 +96,7 @@
               <p><a href="./newArrivals.html">Difuminador de ojos</a></p>
               <p><a href="./newArrivals.html">Sombras</a></p>
               <p><a href="./newArrivals.html">Pestañas</a></p>
-              
+
             </div>
             <div>
               <div class="color-pink">CARA</div>
@@ -195,10 +164,10 @@
             </div>
           </div>
         </div>
-        
+
 
         <div id="kits"><a href="./newArrivals.html">KITS AND COMBOS</a>
-         
+
         </div>
         <a href="./newArrivals.html">OFERTAS</a>
         <div id="kits"><a href="./newArrivals.html">TUTORIALES</a>
@@ -211,118 +180,15 @@
       </div>
 
       <!--       Header End                 -->
-     
-    
-      <h3>NUESTRAS MARCAS</h3>
-      <div id="brandsName">
-        <div>
-          <img
-            src="./imagenes/Avon.png"
-            alt="" />
-        </div>
-        <div>
-          <img src="./imagenes/Lauder.png" alt="" />
-        </div>
-        <div>
-          <img
-            src="./imagenes/loreal.png"
-            alt="" />
-        </div>
-        <div>
-          <img src="./imagenes/Neutrogena.png"
-            alt="" />
-        </div>
-      </div>
 
-      <h3>EN LA MIRA</h3>
-      <div id="banner1">
-        <img src="https://cdn.shopify.com/s/files/1/1743/7443/files/Hok-koric-top_offer.jpg?v=1639375957"
-          style="width: 100%" />
-      </div>
-      <div id="banner">
-        <img src="https://cdn.shopify.com/s/files/1/1743/7443/files/HOK_-_Spotlight_XX.jpg?v=1639374640"
-          style="width: 100%" />
-      </div>
-      <h3>OFERTAS</h3>
-      <div id="banner1">
-        <img
-          src="https://cdn.shopify.com/s/files/1/1743/7443/files/HOK_-_Top_Offers_-_BYOK_d12221cf-6254-4cbc-a321-ff70ddebe667.jpg?v=1638864098"
-          style="width: 100%" />
-      </div>
-      <div id="banner">
-        <img src="https://cdn.shopify.com/s/files/1/1743/7443/files/HOK_-_top_offer.jpg?v=1639375997"
-          style="width: 100%" />
-      </div>
-      <h3>LO MAS DESTACADO</h3>
-      <div id="hotPicks">
-        <div>
-          <img
-            src="https://cdn.shopify.com/s/files/1/1743/7443/files/HotPicks-lagirl_c96f7fce-47fb-452b-bd5a-06c3c2fa763f.jpg?v=1639376730"
-            alt="" width="100%" height="100%" />
-        </div>
-        <div>
-          <img src="https://cdn.shopify.com/s/files/1/1743/7443/files/HotPicks-milani.jpg?v=1639374718" alt=""
-            width="100%" height="100%" />
-        </div>
-        <div>
-          <img src="https://cdn.shopify.com/s/files/1/1743/7443/files/HotPicks-pp.jpg?v=1639374731" alt="" width="100%"
-            height="100%" />
-        </div>
-        <div>
-          <img src="https://cdn.shopify.com/s/files/1/1743/7443/files/HotPicks-mur_skincare.jpg?v=1639374777" alt=""
-            width="100%" height="100%" />
-        </div>
-      </div>
-      <h3>COMPRA POR CATEGORIA</h3>
-      <div id="shopCat">
-        <div class="cat1">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1743/7443/files/Category_Banners_370_x_110_-_Eyes.jpg?v=1637645532"
-            alt="" />
-        </div>
-        <div class="cat2">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1743/7443/files/Category_Banners_370_x_110_-_Face.jpg?v=1637645470"
-            alt="" />
-        </div>
-        <div class="cat3">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1743/7443/files/Category_Banners_370_x_110_-_Skin.jpg?v=1637645470"
-            alt="" />
-        </div>
-        <div class="cat4">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1743/7443/files/Category_Banners_370_x_110_-_Lips.jpg?v=1637645470"
-            alt="" />
-        </div>
-        <div class="cat5">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1743/7443/files/Category_Banners_370_x_110_-_Combos.jpg?v=1637645470"
-            alt="" />
-        </div>
-      </div>
-      <h3>MARCAS DESTACADAS</h3>
-      <div id="featured">
-        <div>
-          <img
-            src="https://cdn.shopify.com/s/files/1/1743/7443/files/Featurd_Brands_-Physcians_Formula.jpg?v=1639374891"
-            alt="" height="100%" width="100%" />
-        </div>
-        <div>
-          <img src="https://cdn.shopify.com/s/files/1/1743/7443/files/Featurd_Brands_-Haircare.jpg?v=1639374930" alt=""
-            height="100%" width="100%" />
-        </div>
-        <div>
-          <img src="https://cdn.shopify.com/s/files/1/1743/7443/files/Featurd_Brands_-mur.jpg?v=1639374977" alt=""
-            height="100%" width="100%" />
-        </div>
-        <div>
-          <img src="https://cdn.shopify.com/s/files/1/1743/7443/files/Featurd_Brands-koric.jpg?v=1639375055" alt=""
-            height="97%" width="100%" />
-        </div>
-      </div>
-     
- 
+
+      <p id="resultadoCrear">
+      <?php if (!empty($nombreUsuario)) { ?>
+            <p>Bienvenido, <?php echo $nombreUsuario; ?></p>
+        <?php } else { ?>
+            <p>No se ha iniciado sesión.</p>
+        <?php } ?>
+      </p>
 
       <!--         Footer Start                    -->
 
@@ -391,17 +257,17 @@
             </div>
           </div>
           <div class="footer5">
-          
+
           </div>
         </div>
       </div>
       <div id="last">
-        
+
       </div>
 
       <!--      Footer End                    -->
     </div>
-    </div>
+  </div>
 </body>
 
 </html>
