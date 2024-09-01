@@ -50,11 +50,11 @@
         <form id="form" method="post" action="./php/loginExitoso.php">
           <label id="logBold">Email</label><span>*</span>
           <br />
-          <input id="eml" class="box" type="text"name="email" placeholder="Email" />
+          <input id="eml" class="box" required ="text"name="email" placeholder="Email" />
           <br /><br />
           <label id="logBold">Clave</label><span>*</span>
           <br />
-          <input id="pass" class="box" type="password" name="pass" placeholder="Password" />
+          <input id="pass" class="box" required ="password" name="pass" placeholder="Password" />
           <br /><br />
           <div class="pasdiv">Olvidaste tu contraseña?</a></div>
           <button class="box but1" type="submit" >
@@ -79,19 +79,19 @@
           <form id="form" action="./php/crearCuenta.php" method="post">
               <label class="leb1">Nombre</label><span>*</span>
               <br>
-              <input type="text" id="nombre" name="nombre">
+              <input type="text" required ="nombre" name="nombre">
               <br><br>
               <label  class="leb1 ">Apellido</label><span>*</span>
               <br>
-              <input id="apellido" type="text" name="apellido">
+              <input id="apellido"required  type="text" name="apellido">
               <br><br>
               <label class="leb1">Email</label><span>*</span>
               <br>
-              <input type="text" id="email" name="email">
+              <input type="text" required ="email" name="email">
               <br><br>
               <label class="leb1">Clave</label><span>*</span>
               <br>
-              <input type="password" id="pass" name="pass">
+              <input type="password" required ="pass" name="pass">
               <br><br>
               <button id="sub" type="submit">CREA LA CUENTA</button>
           </form>

@@ -8,6 +8,7 @@
   <title>Compra Maquillaje en Colombia Y el mundo - SPLENDID</title>
 
   <!-- Take this data and paste in head tag for Header & Footer     -->
+   
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,42 +22,43 @@
     // Configuración de la conexión a la base de datos
     $servername = "localhost";
     $username = "root";
-    $password = "123456";
+    $password = "";
     $dbname = "Splendid";
 
-    // Crear conexión
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    try {
+        // Crear conexión PDO
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
-    // Verificar la conexión
-    if ($conn->connect_error) {
-        die("Conexión fallida: " . $conn->connect_error);
-    }
+        // Configurar el modo de error PDO para que lance excepciones
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Inicializar la variable del nombre del usuario
-    $nombreUsuario = "";
+        // Inicializar la variable del nombre del usuario
+        $nombreUsuario = "";
 
-    // Procesar los datos del formulario de inicio de sesión
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email = $_POST["email"];
-        $password = $_POST["pass"];
+        // Procesar los datos del formulario de inicio de sesión
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email = $_POST["email"];
+            $password = $_POST["pass"];
 
-        // Consulta SQL para verificar las credenciales
-        $sql = "SELECT nombre FROM usuarios WHERE email='$email' AND password='$password'";
-        $result = $conn->query($sql);
+            // Consulta SQL para verificar las credenciales
+            $sql = "SELECT nombre FROM usuarios WHERE email=:email AND password=:password";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['email' => $email, 'password' => $password]);
+            $row = $stmt->fetch();
 
-        if ($result->num_rows > 0) {
-            // Las credenciales son correctas, obtener el nombre del usuario
-            $row = $result->fetch_assoc();
-            $nombreUsuario = $row['nombre'];
-        } else {
-            // Las credenciales son incorrectas, redirigir a página de error
-            header("Location: ./loginFallido.php");
-            exit();
+            if ($row) {
+                // Las credenciales son correctas, obtener el nombre del usuario
+                $nombreUsuario = $row['nombre'];
+            } else {
+                // Las credenciales son incorrectas, redirigir a página de error
+                header("Location: ./loginFallido.php");
+                exit();
+            }
         }
+    } catch(PDOException $e) {
+        // Manejar errores de conexión
+        echo "Conexión fallida: " . $e->getMessage();
     }
-
-    // Cerrar la conexión
-    $conn->close();
     ?>
 
   <div id="container">
@@ -181,14 +183,61 @@
 
       <!--       Header End                 -->
 
-
+      
       <p id="resultadoCrear">
       <?php if (!empty($nombreUsuario)) { ?>
-            <p>Bienvenido, <?php echo $nombreUsuario; ?></p>
+            <p style="color:black; font-family: 'Poppins', sans-serif; font-weight: 900; font-size:xx-large;" id="bienvenidoPhp">Bienvenido, <?php echo $nombreUsuario; ?></p>
         <?php } else { ?>
-            <p>No se ha iniciado sesión.</p>
-        <?php } ?>
+            <p style="color:black; font-family: 'Poppins', sans-serif; font-weight: 800; font-size:xx-large">No se ha iniciado sesión.</p>
+        <?php } 
+        ?>
       </p>
+
+      <button
+        id="toggleButton"
+        style="cursor: pointer;"
+        onclick="update()"
+        >Modificar Usuario</button>
+
+        <button
+        id="toggleButton2"
+        style="cursor: pointer;"
+        onclick="deleteted()"
+        
+        >Eliminar Usuarios</button>
+
+        <div id="deleteUser"
+        style="display: none;">
+        <form action="deleteUser.php" method="post">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+     
+          <input type="submit" value="Eliminar">
+        </form>
+         
+      </div>
+
+
+      <div id="updateUser"
+        style="display: none;">
+        <form action="updateUser.php" method="post">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+          <br>
+          <label for="password">Contraseña:</label>
+          <input type="password" id="password" name="pass" required>
+          <br>
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <br>
+          <label for="apellido">Apellido:</label>
+          <input type="text" id="apellido" name="apellido" required>
+          <br>
+          <input type="submit" value="Actualizar">
+        </form>
+         
+      </div>
+        
 
       <!--         Footer Start                    -->
 
@@ -269,8 +318,30 @@
     </div>
   </div>
 </body>
+<script>
+function update(){
+  if(updateUser.style.display === "none"){
+    updateUser.style.display = "block";
+    document.getElementById("toggleButton").innerText = "Ocultar updateUser";
+    
+  }
+  else{
+    updateUser.style.display = "none";
+    document.getElementById("toggleButton").innerText = "Modificar Usuario";
+  }
+}
+function deleteted(){
+  if(deleteUser.style.display === "none"){
+    deleteUser.style.display = "block";
+    document.getElementById("toggleButton2").innerText = "Ocultar deleteUser";
+    
+  }
+  else{
+    deleteUser.style.display = "none";
+    document.getElementById("toggleButton2").innerText = "eliminar Usuario";
+  }
+}
+</script>
+
 
 </html>
-
-<script src="./script/index.js">
-</script>

@@ -16,45 +16,47 @@
   <link rel="stylesheet" href="../styles/index.css" />
 </head>
 
-<body>
-  <?php
-  // Configuración de la conexión a la base de datos
+<?php
+// Configuración de la conexión a la base de datos
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "Splendid";
 
-  $servername = "localhost";
-  $username = "root";
-  $password = "123456"; // Cambia 'tu_contraseña' por tu contraseña de la base de datos
-  $dbname = "Splendid"; // Cambia 'tu_base_de_datos' por el nombre de tu base de datos
+try {
+    // Crear conexión PDO
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
-  // Crear conexión
-  $conn = new mysqli($servername, $username, $password, $dbname);
+    // Configurar el modo de error PDO para que lance excepciones
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  // Verificar la conexión
-  if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-  }
+    $mensaje = "";
 
-  $mensaje = "";
+    // Procesar los datos del formulario
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $nombre = $_POST["nombre"];
+        $apellido = $_POST["apellido"];
+        $email = $_POST["email"];
+        $password = $_POST["pass"];
 
-  // Procesar los datos del formulario
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = $_POST["nombre"];
-    $apellido = $_POST["apellido"];
-    $email = $_POST["email"];
-    $password = $_POST["pass"];
+        // Consulta SQL preparada para insertar datos en la tabla 'usuarios'
+        $stmt = $conn->prepare("INSERT INTO usuarios (nombre, apellido, email, password) VALUES (:nombre, :apellido, :email, :password)");
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':apellido', $apellido);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
 
-    // Consulta SQL para insertar datos en la tabla 'usuarios'
-    $sql = "INSERT INTO usuarios (nombre, apellido, email, password) VALUES ('$nombre', '$apellido', '$email', '$password')";
-
-    if ($conn->query($sql) === TRUE) {
-      $mensaje = "La cuenta se creó exitosamente";
-    } else {
-      $mensaje = "Error al crear la cuenta: " . $conn->error;
+        if ($stmt->execute()) {
+            $mensaje = "La cuenta se creó exitosamente";
+        } else {
+            $mensaje = "Error al crear la cuenta";
+        }
     }
-  }
-
-  // Cerrar la conexión
-  $conn->close();
-  ?>
+} catch(PDOException $e) {
+    // Manejar errores de conexión
+    echo "Conexión fallida: " . $e->getMessage();
+}
+?>
 
   <div id="container">
 
@@ -179,9 +181,11 @@
       <!--       Header End                 -->
 
 
-      <p id="resultadoCrear">
+      <p 
+        style="color:black; font-family: 'Poppins', sans-serif; font-weight: 800; font-size:xx-large" 
+        id="resultadoCrear">
       <?php if (!empty($mensaje)) { ?>
-        <p><?php echo $mensaje; ?></p>
+        <p style="color:black; font-family: 'Poppins', sans-serif; font-weight: 800; font-size:xx-large"><?php echo $mensaje; ?></p>
     <?php } ?>
       </p>
 

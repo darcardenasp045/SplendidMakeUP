@@ -1,9 +1,10 @@
-var loginn = document.getElementById("loginn");
-var newAccount = document.getElementById("newAccount");
-var log = document.getElementById("log");
-var create = document.getElementById("create");
-var closeWin = document.getElementById("close");
-var closeCre = document.getElementById("close1");
+const loginn = document.getElementById("loginn");
+const newAccount = document.getElementById("newAccount");
+const log = document.getElementById("log");
+const create = document.getElementById("create");
+const closeWin = document.getElementById("close");
+const closeCre = document.getElementById("close1");
+const updateUser= document.getElementById("updateUser");
 
 // Mostrar la sección de login y ocultar la de nueva cuenta
 log.addEventListener("click", function() {
