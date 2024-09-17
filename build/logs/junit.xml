@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="C:\wamp64\www\Proyectos\splendidMakeup\phpunit.xml" tests="2" assertions="8" errors="0" failures="0" skipped="0" time="0.100155">
-    <testsuite name="Application Test Suite" tests="2" assertions="8" errors="0" failures="0" skipped="0" time="0.100155">
-      <testsuite name="CrearCuentaTest" file="C:\wamp64\www\Proyectos\splendidMakeup\test\CrearCuentaTest.php" tests="2" assertions="8" errors="0" failures="0" skipped="0" time="0.100155">
-        <testcase name="testInsercionDatos" file="C:\wamp64\www\Proyectos\splendidMakeup\test\CrearCuentaTest.php" line="27" class="CrearCuentaTest" classname="CrearCuentaTest" assertions="6" time="0.034336"/>
-        <testcase name="testManejoExcepcionConexion" file="C:\wamp64\www\Proyectos\splendidMakeup\test\CrearCuentaTest.php" line="54" class="CrearCuentaTest" classname="CrearCuentaTest" assertions="2" time="0.065818"/>
+  <testsuite name="C:\wamp64\www\Proyectos\splendidMakeup\phpunit.xml" tests="2" assertions="8" errors="0" failures="0" skipped="0" time="0.094006">
+    <testsuite name="Application Test Suite" tests="2" assertions="8" errors="0" failures="0" skipped="0" time="0.094006">
+      <testsuite name="CrearCuentaTest" file="C:\wamp64\www\Proyectos\splendidMakeup\test\CrearCuentaTest.php" tests="2" assertions="8" errors="0" failures="0" skipped="0" time="0.094006">
+        <testcase name="testInsercionDatos" file="C:\wamp64\www\Proyectos\splendidMakeup\test\CrearCuentaTest.php" line="27" class="CrearCuentaTest" classname="CrearCuentaTest" assertions="6" time="0.040684"/>
+        <testcase name="testManejoExcepcionConexion" file="C:\wamp64\www\Proyectos\splendidMakeup\test\CrearCuentaTest.php" line="54" class="CrearCuentaTest" classname="CrearCuentaTest" assertions="2" time="0.053321"/>
       </testsuite>
     </testsuite>
   </testsuite>
